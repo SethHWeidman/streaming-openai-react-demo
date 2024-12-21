@@ -1,0 +1,56 @@
+/* Container for the entire app */
+.app-container {
+    max-width: 700px;
+    margin: 40px auto;
+    font-family: "Arial", sans-serif;
+  }
+  
+  /* The form for entering the prompt */
+  .prompt-form {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .prompt-input {
+    width: 400px;
+    margin-right: 10px;
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  .ask-button {
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  /* The container for the response area */
+  .response-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 200px;
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: pre-wrap; /* so partial text can show line breaks */
+    margin-bottom: 40px;
+  }
+  
+  /* 
+     The partial text while streaming 
+     (might look the same as final text, 
+     but we keep it separate in case we want different styling)
+  */
+  .partial-text {
+    color: #333;
+    margin-bottom: 1em;
+  }
+  
+  /* The final rendered Markdown content */
+  .markdown-output h1,
+  .markdown-output h2,
+  .markdown-output h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+  
