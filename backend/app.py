@@ -10,28 +10,25 @@ client = openai.OpenAI(api_key=environ.get("OPENAI_API_KEY"))
 app = flask.Flask(__name__)
 flask_cors.CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
+
 @app.route("/stream")
 def stream() -> flask.Response:
     user_prompt = request.args.get("prompt", "Tell me a story")
-    
+
     def generate():
         messages = [
             {
                 "role": "system",
                 "content": (
-                    "You are a helpful assistant. "
-                    "Please produce your answer in well-structured Markdown, "
-                    "with headings and blank lines. "
+                    "You are a helpful assistant. Please produce your answer in "
+                    "well-structured Markdown, with headings and blank lines. "
                 ),
             },
             {"role": "user", "content": user_prompt},
         ]
-        
+
         completion = client.chat.completions.create(
-            model="chatgpt-4o-latest",
-            messages=messages,
-            temperature=0.7,
-            stream=True
+            model="chatgpt-4o-latest", messages=messages, temperature=0.7, stream=True
         )
 
         for chunk in completion:
@@ -47,6 +44,7 @@ def stream() -> flask.Response:
                     yield f"data: {data_str}\n\n"
 
     return flask.Response(generate(), mimetype="text/event-stream")
+
 
 if __name__ == "__main__":
     app.run(port=8000, debug=True)

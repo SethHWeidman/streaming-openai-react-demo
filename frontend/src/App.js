@@ -25,7 +25,9 @@ function App() {
       eventSourceRef.current = null;
     }
 
-    const url = `http://localhost:8000/stream?prompt=${encodeURIComponent(prompt)}`;
+    const url = `http://localhost:8000/stream?prompt=${encodeURIComponent(
+      prompt
+    )}`;
     const es = new EventSource(url);
     eventSourceRef.current = es;
 
